@@ -1,12 +1,16 @@
+# defines
 CC =gcc
 CCLINK= $(CC)
 CFLAGS= -g -Wall -std=c99
 OBJS= main.o  file0.o  file1.o  file2.o  file3.o  file4.o
+RM = *.o *.exe
+EXEC= prog.exe
 
 # the first rule is the linker :
 all: $(OBJS)
-	$(CCLINK) $(OBJS) -o prog.exe
+	$(CCLINK) $(OBJS) -o $(EXEC)
 
+# the rules for the different files :
 main.o: file0.h file1.h file2.h file3.h file4.h
 	$(CC) $(CFLAGS) -c main.c
 
@@ -26,6 +30,6 @@ file4.o: file4.c file4.h
 	$(CC) $(CFLAGS) -c file4.c
 
 
-# clean comend
+# clean commend
 clean: 
-	rm -rf *.o *.exe
+	rm -rf $(RM)
